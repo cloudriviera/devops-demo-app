@@ -5,9 +5,16 @@ $config = parse_ini_file('config.ini');
 // Declare Variables
 $dbSuccess = false;
 $dbVersion = false;
+// Get database credentials from environment variables
+$hostname = getenv('DB_HOST') ?: 'localhost';
+$username = getenv('DB_USER') ?: 'root'; 
+$password = getenv('DB_PASSWORD') ?: '';
+$dbname = getenv('DB_NAME') ?: 'test';
+$environment = getenv('ENV') ?: 'environment';
+
 
 // Connect to SQL Server
-$conn = @new mysqli($config['hostname'], $config['username'], $config['password'], $config['dbname']);
+$conn = @new mysqli($hostname, $username, $password, $dbname);
 
 if ($conn->connect_errno) {
 }
@@ -73,7 +80,7 @@ $conn->close(); ?>
                     ?>
                     </span>
                 </h3>
-                <h3>Environment: <span class="label label-info"><?php echo $config['environment'] ?></span></h3>
+                <h3>Environment: <span class="label label-info"><?php echo $environment ?></span></h3>
                 <h3>Application Version: <span class="label label-info">1.7</span></h3>
                 <h3>Database Scripts Version: <?php
                         if ($dbVersion) {echo '<span class="label label-info">'. $dbVersion;}
