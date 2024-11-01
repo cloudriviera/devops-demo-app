@@ -6,10 +6,10 @@ $config = parse_ini_file('config.ini');
 $dbSuccess = false;
 $dbVersion = false;
 // Get database credentials from environment variables
-$hostname = getenv('DB_HOST') ?: 'localhost';
-$username = getenv('DB_USER') ?: 'root'; 
-$password = getenv('DB_PASSWORD') ?: '';
-$dbname = getenv('DB_NAME') ?: 'test';
+$hostname = getenv('DB_HOST') ?: 'mariadb';
+$username = getenv('DB_USER') ?: 'devops'; 
+$password = getenv('DB_PASSWORD') ?: 'devops#2024';
+$dbname = getenv('DB_NAME') ?: 'devopsdemo';
 $environment = getenv('ENV') ?: 'environment';
 
 
